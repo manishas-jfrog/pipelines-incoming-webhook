@@ -1,0 +1,19 @@
+
+resources:
+  - name: demo_incoming_webhook
+    type: IncomingWebhook
+    configuration:
+      webhookName: demo_incoming_webhook
+
+pipelines:
+  - name: test_webhook_pipeline
+    steps:
+      - name: test_webhook
+        type: Bash
+        configuration:
+          inputResources:
+            - name: demo_incoming_webhook
+        execution:
+          onExecute:
+            - echo $res_demo_incoming_webhook_payload
+ 
